@@ -20,15 +20,17 @@ class ViewPagerAdapter(val context: Context, val characters: List<Characters>) :
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val layoutInflater = LayoutInflater.from(context)
-        val view = layoutInflater.inflate(R.layout.stackview_item, container, false)
+        val view = layoutInflater.inflate(R.layout.list_item, container, false)
 
         val imageViewCharacter: ImageView = view.findViewById(R.id.imageView_character)
         val textViewCharacter: TextView = view.findViewById(R.id.textView_character)
+        val imageViewBackground: ImageView = view.findViewById(R.id.background_imageview)
 
         val imageURL = characters[position].results[position].image
 
         textViewCharacter.text = characters[position].results[position].name
         Glide.with(imageViewCharacter.context).load(imageURL).into(imageViewCharacter)
+        Glide.with(imageViewBackground.context).load(imageURL).into(imageViewBackground)
 
         container.addView(view, 0)
 
